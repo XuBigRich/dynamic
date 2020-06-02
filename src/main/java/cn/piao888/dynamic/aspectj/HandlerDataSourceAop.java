@@ -31,8 +31,11 @@ public class HandlerDataSourceAop {
     @Before("pointcut()")
     public void doBefore(JoinPoint joinPoint)
     {
+        //获取切入点方法
         Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
+        //从切入点方法上 获取注解
         DS annotationClass = method.getAnnotation(DS.class);//获取方法上的注解
+        //保证有这个注解
         if(annotationClass == null){
             annotationClass = joinPoint.getTarget().getClass().getAnnotation(DS.class);//获取类上面的注解
             if(annotationClass == null) return;

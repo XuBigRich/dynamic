@@ -1,6 +1,5 @@
 package cn.piao888.dynamic.config;
 
-import cn.piao888.dynamic.config.properties.DruidProperties;
 import cn.piao888.dynamic.datasource.MultipleDataSourceToChoose;
 import cn.piao888.dynamic.enums.DataSourceType;
 import com.alibaba.druid.pool.DruidDataSource;
