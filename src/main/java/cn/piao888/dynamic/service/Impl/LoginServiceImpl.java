@@ -30,7 +30,8 @@ public class LoginServiceImpl implements LoginService {
      * @param userName
      * @return
      */
-    @DS(DataSourceType.SLAVE)
+    @Override
+
     public SysUser getSysUser(String userName){
         //根据用户名查出用户
         SysUser sysUser=sysUserMapper.getUserByName(userName);
@@ -40,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
         System.out.println(sysUser.toString());
         return sysUser;
     }
-    @DS(DataSourceType.MASTER)
+
     public List<SysRole> getRoles(){
         List<SysRole> roles= sysRoleMapper.selectRoleBelongByUserId("1");
         System.out.println( roles.get(0).toString());
