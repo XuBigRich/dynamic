@@ -1,13 +1,14 @@
 package cn.piao888.dynamic.service;
 
 
-import cn.piao888.dynamic.domain.SysRole;
-import cn.piao888.dynamic.domain.SysUser;
+import cn.piao888.dynamic.domain.Role;
+import cn.piao888.dynamic.domain.User;
 
 import java.util.List;
 
 public interface LoginService {
-     SysUser getUserByName(String getMapByName);
-     List<SysRole> getRoles();
-     SysUser getSysUser(String userName);
+    User getUserByName(String userName);
+
+    List<Role> getRoles(Integer uId);
+
 }

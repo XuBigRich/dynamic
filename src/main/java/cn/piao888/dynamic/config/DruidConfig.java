@@ -4,7 +4,11 @@ import cn.piao888.dynamic.datasource.MultipleDataSourceToChoose;
 import cn.piao888.dynamic.enums.DataSourceType;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.alibaba.druid.support.http.StatViewServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -47,12 +51,10 @@ public class DruidConfig {
     @Primary
     public MultipleDataSourceToChoose dataSource(DataSource masterDataSource, DataSource slaveDataSource) {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        // 配置多数据源
+        // 配置多数据源 druid 是最后装载进去的 现在一个数据源一个druid
         targetDataSources.put(DataSourceType.MASTER.name(), masterDataSource);
         targetDataSources.put(DataSourceType.SLAVE.name(), slaveDataSource);
         //将多数据源信息放入 ioc容器的 dynamicDataSource 对象中  通过aop 的注解 判断使用哪一个数据源
         return new MultipleDataSourceToChoose(masterDataSource, targetDataSources);
     }
-
-
 }

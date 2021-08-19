@@ -1,8 +1,8 @@
 package cn.piao888.dynamic.service.Impl;
 
 import cn.piao888.dynamic.annotation.DS;
-import cn.piao888.dynamic.domain.SysRole;
-import cn.piao888.dynamic.domain.SysUser;
+import cn.piao888.dynamic.domain.Role;
+import cn.piao888.dynamic.domain.User;
 import cn.piao888.dynamic.enums.DataSourceType;
 import cn.piao888.dynamic.mapper.SysRoleMapper;
 import cn.piao888.dynamic.mapper.SysUserMapper;
@@ -19,32 +19,30 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private SysRoleMapper sysRoleMapper;
 
-    @Override
-    public SysUser getUserByName(String getMapByName) {
-        //模拟数据库查询，正常情况此处是从数据库或者缓存查询。
-        return getSysUser(getMapByName);
-    }
-
     /**
-     * 模拟数据库查询
+     * 根据用户名查出用户
+     *
      * @param userName
      * @return
      */
     @Override
-
-    public SysUser getSysUser(String userName){
-        //根据用户名查出用户
-        SysUser sysUser=sysUserMapper.getUserByName(userName);
-        //根据用户id查出用户所属角色
-//        List<SysRole> roles=getRoles();
-//        sysUser.setRoleList(roles);
-        System.out.println(sysUser.toString());
+    @DS(DataSourceType.MASTER)
+    public User getUserByName(String userName) {
+        User sysUser = sysUserMapper.getUserByName(userName);
         return sysUser;
     }
 
-    public List<SysRole> getRoles(){
-        List<SysRole> roles= sysRoleMapper.selectRoleBelongByUserId("1");
-        System.out.println( roles.get(0).toString());
+    /**
+     * 根据用户id查出用户所属角色
+     *
+     * @param uid 用户id
+     * @return
+     */
+
+    public List<Role> getRoles(Integer uid) {
+        List<Role> roles = sysRoleMapper.selectRoleBelongByUserId(uid);
+        Role role= roles.get(1);
+        System.out.println(role);
         return roles;
     }
 }

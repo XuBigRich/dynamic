@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.piao888.dynamic.mapper.SysUserMapper">
-    <resultMap id="BaseResultMap" type="cn.piao888.dynamic.domain.SysUser">
+    <resultMap id="BaseResultMap" type="cn.piao888.dynamic.domain.User">
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
@@ -11,14 +11,14 @@
     delete from user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-    <insert id="insert" parameterType="cn.piao888.dynamic.domain.SysUser">
+    <insert id="insert" parameterType="cn.piao888.dynamic.domain.User">
     insert into user (id,  username,password
       )
     values (#{id,jdbcType=VARCHAR},  #{username,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}
       )
   </insert>
-    <update id="updateByPrimaryKey" parameterType="cn.piao888.dynamic.domain.SysUser">
+    <update id="updateByPrimaryKey" parameterType="cn.piao888.dynamic.domain.User">
     update user
     set
       username = #{username,jdbcType=VARCHAR},
@@ -37,6 +37,6 @@
 
     <select id="getUserByName" resultMap="BaseResultMap">
     select id,  username, password
-    from sys_user where usercode=#{username,jdbcType=VARCHAR}
+    from user where username=#{username,jdbcType=VARCHAR}
   </select>
 </mapper>

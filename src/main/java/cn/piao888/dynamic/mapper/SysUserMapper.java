@@ -1,24 +1,23 @@
 package cn.piao888.dynamic.mapper;
 
 import cn.piao888.dynamic.annotation.DS;
-import cn.piao888.dynamic.domain.SysUser;
+import cn.piao888.dynamic.domain.User;
 import cn.piao888.dynamic.enums.DataSourceType;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-@DS(DataSourceType.SLAVE)
 public interface SysUserMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(SysUser record);
+    int insert(User record);
 
-    SysUser selectByPrimaryKey(String id);
+    User selectByPrimaryKey(String id);
 
-    List<SysUser> selectAll();
+    List<User> selectAll();
 
-    int updateByPrimaryKey(SysUser record);
+    int updateByPrimaryKey(User record);
 
-    SysUser getUserByName(String username);
+    User getUserByName(String username);
 }

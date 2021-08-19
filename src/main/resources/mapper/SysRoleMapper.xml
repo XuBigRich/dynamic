@@ -5,22 +5,20 @@
     delete from role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-    <insert id="insert" parameterType="cn.piao888.dynamic.domain.SysRole">
-    insert into role (id, role_name, role_key,role_sort,status
-      )
-    values (#{id,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleKey,jdbcType=VARCHAR},#{roleSort,jdbcType=Integer},#{status,jdbcType=Integer}
-      )
+    <insert id="insert" parameterType="cn.piao888.dynamic.domain.Role">
+    insert into role (id, role_name, role_key,role_sort,status)
+    values (#{id,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleKey,jdbcType=VARCHAR},#{roleSort,jdbcType=INTEGER},#{status,jdbcType=INTEGER})
   </insert>
-    <update id="updateByPrimaryKey" parameterType="cn.piao888.dynamic.domain.SysRole">
+    <update id="updateByPrimaryKey" parameterType="cn.piao888.dynamic.domain.Role">
     update role
     set role_name = #{roleName,jdbcType=VARCHAR},
       role_key = #{roleKey,jdbcType=VARCHAR},
-      role_sort=#{roleSort,jdbcType=Integer},
-      status=#{status,jdbcType=Integer}
+      role_sort=#{roleSort,jdbcType=INTEGER},
+      status=#{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-    <select id="selectRoleBelongByUserId" resultType="cn.piao888.dynamic.domain.SysRole">
+    <select id="selectRoleBelongByUserId" resultType="cn.piao888.dynamic.domain.Role">
     select r.*
-    from user_role ur left join role r on  ur.role_id=r.id where ur.user_id=#{userId,jdbcType=Integer}
+    from user_role ur left join role r on  ur.role_id=r.id where ur.user_id=#{userId,jdbcType=INTEGER}
   </select>
 </mapper>

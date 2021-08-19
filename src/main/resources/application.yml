@@ -1,14 +1,42 @@
 spring:
   datasource:
-      master:
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://47.104.92.214:3306/ry?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
-        username: root
-        password: root
-      slave:
-        driver-class-name: com.mysql.jdbc.Driver
-        url:  jdbc:mysql://47.104.92.214:3306/JingXian?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
-        username: root
-        password: root
+    master:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      async-init: false
+    slave:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/role?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      async-init: false
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
