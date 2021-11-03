@@ -15,6 +15,9 @@ public class MultipleDataSourceToChoose extends AbstractRoutingDataSource {
     public MultipleDataSourceToChoose(DataSource defaultTargetDataSource, Map<Object, Object> targetDataSources)
     {
         super.setDefaultTargetDataSource(defaultTargetDataSource);
+        //在初始化的时候 会将targetDataSources中的 数据，放入到resolvedDataSources，
+        //重写的determineCurrentLookupKey 会在AbstractRoutingDataSource.determineTargetDataSource（）方法中调用 ，
+        // 然后 根据获取到的key 从 resolvedDataSources 集合中取出数据源
         super.setTargetDataSources(targetDataSources);
         super.afterPropertiesSet();
     }
@@ -35,6 +38,9 @@ public class MultipleDataSourceToChoose extends AbstractRoutingDataSource {
      */
     @Override
     protected Object determineCurrentLookupKey() {
+        //通过返回的key 来从resolvedDataSources map中查找对应的数据源
+        //技巧：
+        //可以根据HandlerDataSource.getDataSource()方法 来完善更加灵活的多数据源方法
         return HandlerDataSource.getDataSource();
     }
 }
