@@ -1,6 +1,7 @@
 package cn.piao888.dynamic.service;
 
 
+import cn.piao888.dynamic.domain.Base;
 import cn.piao888.dynamic.domain.Role;
 import cn.piao888.dynamic.domain.User;
 
@@ -11,4 +12,5 @@ public interface LoginService {
 
     List<Role> getRoles(Integer uId);
 
+    Base dynamic(String userName);
 }

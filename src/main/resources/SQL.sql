@@ -14,6 +14,14 @@ CREATE TABLE `user` (
 INSERT INTO user VALUE(NULL,'许鸿志','123123',1);
 INSERT INTO user VALUE(NULL,'许大富','123123',2);
 
+CREATE TABLE `base` (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  name varchar(10) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT charset=utf8;
+
+INSERT INTO base VALUE(NULL,'许鸿志');
+
 -- role库的脚本
 CREATE DATABASE role
 CHARACTER SET utf8
@@ -44,3 +52,11 @@ CREATE TABLE  `role` (
 INSERT INTO `role` VALUE(NULL,'管理员','GLY',1,1);
 INSERT INTO `role` VALUE(NULL,'超级管理员','SJGLY',1,1);
 INSERT INTO `role` VALUE(NULL,'员工','YG',1,1);
+
+CREATE TABLE `base` (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  name varchar(10) DEFAULT NULL COMMENT '姓名',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT charset=utf8;
+
+INSERT INTO base VALUE(NULL,'许大富');
